@@ -1,0 +1,11 @@
+meta {
+  name: uploadImage
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3000/api/upload
+  body: multipartForm
+  auth: inherit
+}
