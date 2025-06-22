@@ -22,7 +22,9 @@ export async function uploadImage(req: Request & { file?: Express.Multer.File },
 
     await fs.unlink(file.path);
 
-    const fileUrl = `http://localhost:9000/${bucketName}/${fileName}`;
+    // Generate presigned URL instead of public URL
+    const fileUrl = await getImageUrl(fileName);
+
     res.json({ message: 'File uploaded successfully', url: fileUrl });
   } catch (error) {
     console.error('Error uploading file:', error);
